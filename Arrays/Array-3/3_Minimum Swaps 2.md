@@ -29,19 +29,31 @@
 
 ### Javascript
 
-```
-const minSwaps = function(A) {
-    let swaps = 0;
-    for (let i = 0; i < A.length; i++) {
-        while (A[i] !== i) {
-            let temp = A[i];
-            let tempII = A[A[i]];
-            A[i] = tempII;
-            A[temp] = temp;
-            swaps++
-        }
+```javascript
+const minSwaps = function (A) {
+  let swaps = 0;
+  for (let i = 0; i < A.length; i++) {
+    while (A[i] !== i) {
+      let temp = A[i];
+      let tempII = A[A[i]];
+      A[i] = tempII;
+      A[temp] = temp;
+      swaps++;
     }
-    return swaps;
-}
-
+  }
+  return swaps;
+};
 ```
+
+> #### Intuition
+>
+> Suppose we have array A=[A0, A1, A2… ]
+> Now, let’s keep iterating over this array, and if Ai != i, We swap it with index Ai (that’s where Ai belongs). If you work it out, you can always see some cycle will form.
+>
+> - [4, 0, 1, 3, 2]
+>
+>   - swap_index(0,4) -> swap_index(0,2) -> swap_index(0,1) (3 swaps)
+>
+> - [2, 0, 1, 4, 3]
+>   - swap_index(0,2) -> swap_index(0,1) (2 swaps)
+>   - swap_index(3,4) (1 swaps)
